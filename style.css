@@ -360,16 +360,103 @@
             border-radius: 6px;
             transition: width 0.5s ease;
         }
+          /* ===== RESPONSIVE IMPROVEMENTS (SAFE ADDITION) ===== */
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .main-grid { grid-template-columns: 1fr; }
-            .logo { font-size: 2.5rem; }
-            .timer-display { font-size: 3rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .timer-controls { flex-direction: column; align-items: stretch; }
-        }
+/* Large screens */
+@media (min-width:1200px){
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.stats-grid{
+grid-template-columns:repeat(2,1fr);
+gap:30px;
+}
+
+.main-grid{
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.timer-section{
+max-width:900px;
+margin:40px auto;
+}
+
+}
+
+/* Tablets */
+@media (max-width:1000px){
+
+.stats-grid{
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.main-grid{
+grid-template-columns:1fr;
+gap:25px;
+}
+
+.timer-section{
+margin-top:25px;
+}
+
+}
+
+/* Mobile */
+@media (max-width:600px){
+
+.container{
+padding:15px;
+}
+
+.logo{
+font-size:24px;
+text-align:center;
+}
+
+.stats-grid{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.main-grid{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+.panel{
+padding:18px;
+}
+
+.stat-card{
+padding:18px;
+}
+
+.timer-display{
+font-size:30px;
+}
+
+.timer-controls{
+flex-direction:column;
+gap:10px;
+}
+
+.btn{
+width:100%;
+text-align:center;
+}
+
+select,
+input,
+textarea{
+font-size:16px;
+}
+
+}
 
         /* Animations */
         @keyframes fadeInUp {
