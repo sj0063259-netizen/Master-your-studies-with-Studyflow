@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDY FLOW - Advanced Study Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mobile-menu">
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">STUDY FLOW</h1>
+            <p style="font-size: 1.3rem; color: #94a3b8; font-weight: 300;">
+                Master your studies with AI-powered planning and tracking
+            </p>
+        </header>
+
+        <!-- Stats Dashboard -->
+        <div class="stats-grid">
+            <div class="stat-card" style="--primary: var(--primary)">
+                <i class="fas fa-book-open stat-icon"></i>
+                <div class="stat-number" id="topicCount">0</div>
+                <div class="stat-label">Topics Completed</div>
+            </div>
+            <div class="stat-card" style="--primary: var(--secondary)">
+                <i class="fas fa-file-text stat-icon"></i>
+                <div class="stat-number" id="notesCount">0</div>
+                <div class="stat-label">Saved Notes</div>
+            </div>
+            <div class="stat-card" style="--primary: var(--accent)">
+                <i class="fas fa-tasks stat-icon"></i>
+                <div class="stat-number" id="planProgress">0%</div>
+                <div class="stat-label">Plan Progress</div>
+            </div>
+            <div class="stat-card" style="--primary: var(--danger)">
+                <i class="fas fa-fire stat-icon"></i>
+                <div class="stat-number" id="streak">3</div>
+                <div class="stat-label">Study Streak</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Topic Planner -->
+            <div class="panel">
+                <div class="section-header">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h2 class="section-title">Topic Planner</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>Course</label>
+                    <select id="course">
+                        <option>Select Course</option>
+                        <option>Electrical Engineering</option>
+                        <option>Computer Science</option>
+                        <option>Mechanical Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select id="subject">
+                        <option>Select Subject</option>
+                        <option>Circuit Theory</option>
+                        <option>Digital Electronics</option>
+                        <option>Programming</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Topic</label>
+                    <select id="topic">
+                        <option>Select Topic</option>
+                        <option>AC Circuits</option>
+                        <option>DC Circuits</option>
+                        <option>Kirchhoff Law</option>
+                        <option>Three-phase</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" id="generatePlan" style="width: 100%;">
+                    <i class="fas fa-magic"></i> Generate Study Plan
+                </button>
+
+                <div id="planOutput" style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-radius: 12px; white-space: pre-wrap;"></div>
+            </div>
+
+            <!-- Study Plan Generator -->
+            <div class="panel">
+                <div class="section-header">
+                    <i class="fas fa-calendar-check section-icon"></i>
+                    <h2 class="section-title">Exam Plan</h2>
+                </div>
+
+                <div class="form-group">
+                    <label>Total Topics</label>
+                    <input type="number" id="topics" placeholder="e.g. 50" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label>Exam Date</label>
+                    <input type="date" id="examDate">
+                </div>
+
+                <button class="btn btn-primary" id="generateStudyPlanBtn" style="width: 100%;">
+                    <i class="fas fa-chart-line"></i> Create Study Schedule
+                </button>
+
+                <div class="progress-container">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <span id="progressText">Progress: 0%</span>
+                        <span id="daysLeft">-</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <ul id="planList" class="plan-list"></ul>
+                <div id="suggestion"></div>
+            </div>
+        </div>
+
+        <!-- Topic Resources & Notes -->
+        <div class="main-grid">
+            <!-- Topic Info -->
+            <div class="panel">
+                <div class="section-header">
+                    <i class="fas fa-info-circle section-icon"></i>
+                    <h2 class="section-title">Topic Information</h2>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Summary</div>
+                        <div class="info-value" id="topicSummary">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Difficulty</div>
+                        <div class="info-value" id="topicDifficulty">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Est. Time</div>
+                        <div class="info-value" id="topicTime">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Book</div>
+                        <div class="info-value" id="topicBook">-</div>
+                    </div>
+                </div>
+
+                <div id="topicResources" class="resources"></div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="panel">
+                <div class="section-header">
+                    <i class="fas fa-sticky-note section-icon"></i>
+                    <h2 class="section-title">Notes</h2>
+                </div>
+
+                <textarea id="notesInput" placeholder="Take notes for the selected topic..."></textarea>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button  id="saveNotes" class="btn btn-primary" id="saveNotes" style="flex: 1;">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button id="viewNotes" class="btn btn-secondary" id="viewNotes" style="flex: 1;">
+                        <i class="fas fa-eye"></i> View
+                    </button>
+                    <button  id="deleteNotes" class="btn btn-danger" id="deleteNotes" style="flex: 1;">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+
+                <div id="savedNotes" style="margin-top: 2rem; padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3); min-height: 100px; display: none;"></div>
+            </div>
+        </div>
+        <!-- Pomodoro Timer -->
+        <div class="timer-section">
+            <div class="section-header" style="justify-content: center; margin-bottom: 2rem;">
+                <i class="fas fa-stopwatch section-icon"></i>
+                <h2 class="section-title">Pomodoro Timer</h2>
+            </div>
+            <div class="timer-display" id="timer">25:00</div>
+            <div class="timer-controls">
+                <button class="btn btn-primary" id="startBtn">
+                    <i class="fas fa-play"></i> Start Session
+                </button>
+                <button class="btn btn-secondary" id="pauseBtn">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+            <div style="margin-top: 2rem; color: #94a3b8; font-size: 1.1rem;">
+                <span id="sessionType">Work Session</span> | 
+                <span id="timeLeft">25 minutes remaining</span>
+            </div>
+        </div>
+
+        <!-- Smart Reminder -->
+        <div class="panel" style="text-align: center; grid-column: 1 / -1;">
+            <div class="section-header" style="justify-content: center;">
+                <i class="fas fa-lightbulb section-icon"></i>
+                <h2 class="section-title">Smart Reminder</h2>
+            </div>
+            <div id="studyReminder" style="font-size: 1.3rem; color: #60a5fa; padding: 2rem;">
+                Select a topic to get smart study recommendations
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js">
+       
+    </script>
+</body>
+</html>
