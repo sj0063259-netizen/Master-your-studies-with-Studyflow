@@ -26,7 +26,7 @@ const topicDatabase = {
         pdf: "Kirchoffs-law.pdf",
         video: "https://www.youtube.com/watch?v=7m1rC9mNq3A"
     },
-    "Three phase system": {
+    "Three-phase": {
         summary: "Three-phase system is an electrical power distribution method that uses three alternating currents, each set 120 degrees apart, to provide a consistent and balanced power supply.",
         difficulty: "Hard",
         time: "3 Hour",

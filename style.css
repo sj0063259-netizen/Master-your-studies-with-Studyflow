@@ -97,6 +97,7 @@ body {
   padding: 1rem;
   transition: transform 0.3s ease;
   cursor: grab;
+  margin: 2px;
 }
 
 .stat-card:hover {
@@ -220,6 +221,11 @@ textarea {
   .main-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .info-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .btn { width: auto; min-width: 140px; } /* fix oversized timer buttons */
+    .stat-card,
+.panel,
+.info-item{
+    margin: 12px;
+}
 }
 
 @media (min-width: 1200px) {
@@ -227,4 +233,9 @@ textarea {
   .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
   .main-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .info-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+  .stat-card,
+.panel,
+.info-item{
+    margin: 15px;px;
+}
 }
