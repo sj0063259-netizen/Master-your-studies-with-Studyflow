@@ -1,22 +1,27 @@
-let totalTime = 25 * 60;
-let time = totalTime;
+let workTime = 25 * 60;
+let breakTime = 5 * 60;
+
+let time = workTime;
 let timer = null;
 let running = false;
+let isWorkSession = true;
+let sessionsCompleted = 0;
 
 const timerDisplay = document.getElementById("timer");
 const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
 const resetBtn = document.getElementById("resetBtn");
+
 const sessionType = document.getElementById("sessionType");
 const timeLeft = document.getElementById("timeLeft");
 
-function updateTimer(){
+function updateDisplay(){
 
 let minutes = Math.floor(time / 60);
 let seconds = time % 60;
 
-minutes = minutes < 10 ? "0" + minutes : minutes;
-seconds = seconds < 10 ? "0" + seconds : seconds;
+minutes = minutes < 10 ? "0"+minutes : minutes;
+seconds = seconds < 10 ? "0"+seconds : seconds;
 
 timerDisplay.innerText = minutes + ":" + seconds;
 
@@ -33,18 +38,34 @@ running = true;
 
 timer = setInterval(()=>{
 
-if(time > 0){
-
 time--;
-updateTimer();
+updateDisplay();
 
-}else{
+if(time <= 0){
 
 clearInterval(timer);
 running = false;
 
-sessionType.innerText = "Break Time!";
-alert("Session completed! Take a break.");
+if(isWorkSession){
+
+sessionsCompleted++;
+alert("Work session finished! Take a break.");
+
+isWorkSession = false;
+time = breakTime;
+sessionType.innerText = "Break Session";
+
+}else{
+
+alert("Break finished! Back to work.");
+
+isWorkSession = true;
+time = workTime;
+sessionType.innerText = "Work Session";
+
+}
+
+updateDisplay();
 
 }
 
@@ -64,10 +85,11 @@ function resetTimer(){
 clearInterval(timer);
 running = false;
 
-time = totalTime;
+time = workTime;
+isWorkSession = true;
 sessionType.innerText = "Work Session";
 
-updateTimer();
+updateDisplay();
 
 }
 
@@ -75,4 +97,4 @@ startBtn.addEventListener("click",startTimer);
 pauseBtn.addEventListener("click",pauseTimer);
 resetBtn.addEventListener("click",resetTimer);
 
-updateTimer();
+updateDisplay();
