@@ -51,6 +51,24 @@ function updateDashboard() {
     const tasks = document.querySelectorAll("#planList input");
     const percent = tasks.length ? Math.round((completedTopics / tasks.length) * 100) : 0;
     document.getElementById("planProgress").textContent = percent + '%';
+
+    let today = new Date().toDateString();
+
+let lastStudy = localStorage.getItem("lastStudyDay");
+
+let streak = localStorage.getItem("studyStreak") || 0;
+
+if(lastStudy !== today){
+
+streak++;
+
+localStorage.setItem("studyStreak", streak);
+
+localStorage.setItem("lastStudyDay", today);
+
+}
+
+document.getElementById("streakCount").innerText = streak;
 }
 
 // ==========================
@@ -245,3 +263,13 @@ topicSelect.addEventListener("change", () => {
         notesInput.value = "";
     }
 });
+const quotes = [
+"Consistency beats motivation.",
+"Small progress every day leads to big success.",
+"Focus on progress, not perfection.",
+"Your future self will thank you."
+];
+
+let randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+
+document.getElementById("quote").innerText = randomQuote;

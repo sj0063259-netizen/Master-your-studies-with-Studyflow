@@ -30,7 +30,9 @@ body {
   margin: auto;
   padding: 1rem;
 }
-
+.panel{
+    margin-bottom: 20px;
+}
 /* ===== HEADER ===== */
 .header {
   text-align: center;
@@ -42,6 +44,13 @@ backdrop-filter:blur(12px);
 background:rgba(15,15,35,0.8);
 border-bottom:1px solid rgba(255,255,255,0.1);
 
+}
+.quote-text{
+    text-align: center;
+    margin-top: 10px;
+    color: #94a3b8;
+    font-size:14px;
+    font-style:italic;
 }
 
 .logo {
@@ -117,10 +126,7 @@ border-bottom:1px solid rgba(255,255,255,0.1);
 .panel:active,
 .info-item:active {
   cursor: grabbing;
-  transform: scale(1.02);
-  opacity:0;
-transform:translateY(20px);
-animation:fadeInUp 0.8s forwards;
+  transform: scale(0.98);
 }
 .stat-number {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -193,6 +199,10 @@ textarea {
 .btn:active{
     transform:scale(0.95);
 }
+.btn:hover{
+    transform: translateY(-2px);
+    box-shadow0 6px 20px rgba(99,102,241,0.4);
+}
 /* ===== TIMER ===== */
 .timer-section {
   text-align: center;
@@ -218,7 +228,14 @@ textarea {
   gap: 0.8rem;
   justify-content: center;
 }
+input[type="date"]{
+color:white;
+}
 
+input[type="date"]::-webkit-calendar-picker-indicator{
+filter:invert(1);
+cursor:pointer;
+}
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 @media (min-width: 600px) {
   .container { padding: 1.2rem; }
@@ -228,7 +245,7 @@ textarea {
 
 @media (min-width: 900px) {
   .container { padding: 2rem; }
-  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .main-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .info-grid { grid-template-columns: repeat(1, 1fr); gap: 2rem; }
   .btn { width: auto; min-width: 140px; } /* fix oversized timer buttons */
@@ -241,12 +258,12 @@ textarea {
 
 @media (min-width: 1200px) {
   .container { padding: 3rem; }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .main-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .info-grid { grid-template-columns: repeat(1, 1fr); gap: 2.5rem; }
   .stat-card,
 .panel,
 .info-item{
-    margin: 15px;px;
+    margin: 15px;
 }
 }
