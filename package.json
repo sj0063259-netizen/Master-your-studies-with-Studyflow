@@ -1,0 +1,1 @@
+{"name":"study-flow","version":"1.0.0","description":"A project to help manage study flow.","main":"index.js","scripts":{"lint":"eslint .","format":"prettier --write .","test":"jest"},"devDependencies":{"eslint":"^latest","prettier":"^latest","jest":"^latest"},"dependencies":{},"author":"sj0063259-netizen","license":"MIT"}
